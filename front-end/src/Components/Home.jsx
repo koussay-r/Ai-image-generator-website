@@ -1,7 +1,28 @@
 import React, { useState } from 'react'
 import initImage from "./../assets/preview.png"
+import axios from 'axios'
 export default function Home() {
     const [imageGenrated,setImageGenerated]=useState(initImage)
+    const [inputvalue,setInputValue]=useState("")
+    const [user,setUser]=useState("")
+    const [loading,setLoading]=useState(false)
+    const handleSendingPrompt=()=>{
+        try{
+            axios.post("http://localhost:9000/handleimage",{prompt:inputvalue})
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+    const handleGenerate=async()=>{
+        handleSendingPrompt()
+        try{
+            const response=axios.get("http://localhost:9000/handleimage/ImageGenerated")
+            console.log(response)
+        }catch(err){
+            console.log(err)
+        }
+    }
   return (
     <div className='mt-28 pb-5 block mx-auto w-[85%]'>
         <div className=' xl:w-[40%]'>
@@ -28,7 +49,7 @@ export default function Home() {
 
             <img src={imageGenrated} alt="" className=' w-[300px] h-[300px]  rounded bg-slate-400/20' />
             </div>
-            <button className=' bg-green-700 block xs:mx-0 mx-auto text-lg mt-6 text-white font-[600] px-3 py-1 rounded-md '>Generate</button>
+            <button onClick={handleGenerate} className=' bg-green-700 block xs:mx-0 mx-auto text-lg mt-6 text-white font-[600] px-3 py-1 rounded-md '>Generate</button>
         </div>
         <div className='mt-12 '>
             <p className='font-[600] text-center xs:text-start text-gray-500/90 font-quicksand'>
