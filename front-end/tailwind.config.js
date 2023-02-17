@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    screens: {
+      'xs': '382px',
+    },
     extend: {
       fontFamily: {
         'quicksand': ['"Quicksand"', "sans-serif"],
