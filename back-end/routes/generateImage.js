@@ -11,9 +11,9 @@ const configuration=new Configuration({
 })
 const openai=new OpenAIApi(configuration);
 
-route.get("/",async(req,res)=>{
-    const prompt="dog"
-    console.log(prompt)
+route.post("/",async(req,res)=>{
+    const prompt=req.body.prompt
+    
     try{
         const response=await openai.createImage({
             prompt,
@@ -22,7 +22,7 @@ route.get("/",async(req,res)=>{
             response_format:"b64_json"
         });
         const image = response.data.data[0].b64_json;
-        res.status(200).send(image)
+        res.status(200).json({photo:image})
     }
     catch(err){
         console.log(err)
