@@ -2,7 +2,7 @@ const express=require("express")
 const mongoose=require("mongoose")
 const dotenv=require("dotenv")
 const cors=require("cors")
-const  route  = require("./routes/generateImage.js")
+const  GenerateRoute  = require("./routes/generateImage.js")
 
 
 //app config
@@ -25,7 +25,7 @@ mongoose.connect(mongodbURl,{
 app.get('/',(req,res)=>{
     res.send("works !")
 })
-app.use("/handleimage",route)
+app.use("/handleimage",GenerateRoute)
 
 
 
