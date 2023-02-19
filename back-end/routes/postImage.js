@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const express = require("express");
 const Image = require("./../models/Imagemodel.js");
 const cloudinary = require("cloudinary").v2;
+const dotenv=require("dotenv")
+dotenv.config()
 const route = express.Router();
 route.get("/", async (req, res) => {
   try {
@@ -12,9 +14,9 @@ route.get("/", async (req, res) => {
   }
 });
 cloudinary.config({
-  cloud_name: "dtgyjmjq5",
-  api_key: "966583524469895",
-  api_secret: "WnwiQJD6Lf1GR0jmt1ATHS9-pBY",
+  cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+  api_key:process.env.CLOUDINARY_API_KEY ,
+  api_secret:process.env.CLOUDINARY_API_SECRET ,
 });
 
 route.post("/", async (req, res) => {
