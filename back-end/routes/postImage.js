@@ -7,7 +7,7 @@ dotenv.config()
 const route = express.Router();
 route.get("/", async (req, res) => {
   try {
-    const response = await Image.find();
+    const response = await Image.find({});
     res.status(200).send(response);
   } catch (err) {
     res.status(500).send(err);
@@ -19,17 +19,19 @@ cloudinary.config({
   api_secret:process.env.CLOUDINARY_API_SECRET ,
 });
 
-route.post("/", async (req, res) => {
+route.post("/", async (req,res) => {
   try {
     const { name, prompt, image } = req.body;
-    const res = await cloudinary.uploader.upload(image);
+    const result = await cloudinary.uploader.upload(image);
     const createPost= await Image.create({
         name,
         prompt,
-        image:res.url
+        image:result.url
     })
     res.status(201).send(createPost)
   } catch (err) {
     console.log(err)
   }
 });
+
+module.exports=route

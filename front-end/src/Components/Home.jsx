@@ -51,6 +51,13 @@ export default function Home() {
         surpriseMePrompts[Math.floor(Math.random() * surpriseMePrompts.length)],
     });
   };
+  const handlesPosting=()=>{
+    try{
+      axios.post("http://localhost:9000/handleposting",inputvalue)
+    }catch(err){
+      console.log(err)
+    }
+  }
   return (
     <div className="mt-28 pb-5 block mx-auto w-[85%]">
       <div className=" lg:w-[40%]">
@@ -99,7 +106,7 @@ export default function Home() {
             src={inputvalue.image}
             alt=""
             className={` w-[300px] h-[300px] ${
-              loading && "brightness-50"
+              loadingGenarate && "brightness-50"
             } rounded bg-slate-400/20`}
           />
         </div>
@@ -115,7 +122,7 @@ export default function Home() {
           ** Once you have created the image you want,you can share it with
           others in the community**
         </p>
-        <button className="block xs:mx-0 mx-auto  text-white font-[600] xs:mr-5 bg-gradient-to-r font-WorkSans mt-4 text-md from-blue-600 to-blue-700 rounded-lg px-4 py-2">
+        <button onClick={handlesPosting} className="block xs:mx-0 mx-auto  text-white font-[600] xs:mr-5 bg-gradient-to-r font-WorkSans mt-4 text-md from-blue-600 to-blue-700 rounded-lg px-4 py-2">
           Share
         </button>
       </div>

@@ -3,7 +3,7 @@ const mongoose=require("mongoose")
 const dotenv=require("dotenv")
 const cors=require("cors")
 const  GenerateRoute  = require("./routes/generateImage.js")
-
+const PostRoute=require("./routes/postImage.js")
 
 //app config
 dotenv.config()
@@ -13,7 +13,7 @@ const mongodbURl=`mongodb+srv://admin:${process.env.PASSWORD}@cluster0.yde1grw.m
 
 
 //midleWares
-app.use(express.json())
+app.use(express.json({limit:"50mb"}))
 app.use(cors())
 mongoose.set('strictQuery', true)
 //db connection
@@ -26,7 +26,7 @@ app.get('/',(req,res)=>{
     res.send("works !")
 })
 app.use("/handleimage",GenerateRoute)
-
+app.use("/handleposting",PostRoute)
 
 
 //listening
