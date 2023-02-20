@@ -4,7 +4,9 @@ import loadingGif from "./../assets/Infinity-1s-200px.gif";
 import axios from "axios";
 import { surpriseMePrompts } from "./Contsants";
 import { PostingLoadingContext } from "../App";
+import { useNavigate } from "react-router-dom";
 export default function Home() {
+  const navigate = useNavigate()
     // loading while posting the generated image
   const [PostingLoading,setPostingLoading]=useContext(PostingLoadingContext)
 
@@ -58,6 +60,7 @@ export default function Home() {
       setPostingLoading(true)
       await axios.post("http://localhost:9000/handleposting",inputvalue)
       setPostingLoading(false)
+      navigate('/collection')
     }catch(err){
       console.log(err)
     }
