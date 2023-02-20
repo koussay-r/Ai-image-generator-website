@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import initImage from "./../assets/preview.png";
 import loadingGif from "./../assets/Infinity-1s-200px.gif";
 import axios from "axios";
 import { surpriseMePrompts } from "./Contsants";
+import { PostingLoadingContext } from "../App";
 export default function Home() {
     // loading while posting the generated image
-  const [loadingPosting, setLoadingPosting] = useState(false);
+  const [PostingLoading,setPostingLoading]=useContext(PostingLoadingContext)
+
   // the data of the generated image and the user will be in this state
   const [inputvalue, setInputValue] = useState({
     name: "",
@@ -51,9 +53,11 @@ export default function Home() {
         surpriseMePrompts[Math.floor(Math.random() * surpriseMePrompts.length)],
     });
   };
-  const handlesPosting=()=>{
+  const handlesPosting=async()=>{
     try{
-      axios.post("http://localhost:9000/handleposting",inputvalue)
+      setPostingLoading(true)
+      await axios.post("http://localhost:9000/handleposting",inputvalue)
+      setPostingLoading(false)
     }catch(err){
       console.log(err)
     }
@@ -123,7 +127,13 @@ export default function Home() {
           others in the community**
         </p>
         <button onClick={handlesPosting} className="block xs:mx-0 mx-auto  text-white font-[600] xs:mr-5 bg-gradient-to-r font-WorkSans mt-4 text-md from-blue-600 to-blue-700 rounded-lg px-4 py-2">
-          Share
+          
+          {
+            PostingLoading?
+            <>Sharing...</>
+            :
+            <>Share</>
+          }
         </button>
       </div>
     </div>
