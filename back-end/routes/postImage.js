@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const Image = require("./../models/Imagemodel.js");
 const cloudinary = require("cloudinary").v2;
-const dotenv=require("dotenv")
+const dotenv=require("dotenv");
 dotenv.config()
 const route = express.Router();
 route.get("/", async (req, res) => {
