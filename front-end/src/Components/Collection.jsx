@@ -6,7 +6,7 @@ export default function Collection() {
   useEffect(()=>{
     const handlePosts=async()=>{
       try{
-        const response=await axios.get("http://localhost:9000/handleposting");
+        const response=await axios.get("https://easy-ruby-peacock-vest.cyclic.app/handleposting");
         console.log(response.data);
         setPosts(response.data)
       }

@@ -30,7 +30,7 @@ export default function Home() {
       try {
         setLoadingGenerate(true);
         await axios
-          .post("http://localhost:9000/handleimage", {
+          .post("https://easy-ruby-peacock-vest.cyclic.app/handleimage", {
             prompt: inputvalue.prompt,
           })
           .then((res) => {
@@ -58,7 +58,7 @@ export default function Home() {
   const handlesPosting=async()=>{
     try{
       setPostingLoading(true)
-      await axios.post("http://localhost:9000/handleposting",inputvalue)
+      await axios.post("https://easy-ruby-peacock-vest.cyclic.app/handleposting",inputvalue)
       setPostingLoading(false)
       navigate('/collection')
     }catch(err){
@@ -121,7 +121,13 @@ export default function Home() {
           onClick={handleGenerate}
           className=" bg-green-700 block xs:mx-0 mx-auto text-lg mt-6 text-white font-[600] px-3 py-1 rounded-md "
         >
-          Generate
+          {
+            loadingGenarate?
+            <>Generating...</>
+            :
+            <>Generate</>
+          }
+          
         </button>
       </div>
       <div className="mt-12 ">
