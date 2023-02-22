@@ -54,11 +54,11 @@ export default function MessagesSection() {
         e.preventDefault();
     }
   return (
-    <div className="text-white hidden sm:block absolute w-2/3 top-0 bottom-0">
+    <div className="text-white absolute md:w-2/3 w-full top-0 bottom-0">
         <div className='w-full border border-transparent border-b-gray-800 pb-[11px] flex justify-between'>
             <div className='flex mt-5'>
-                <IoIosArrowBack  color='white' className='cursor-pointer md:hidden block mt-[2px] ' size={25}/>
-                {<img src={theTwoMessageUsers[3]} className="rounded-full ml-7 w-[35px] h-[35px]" alt=""/>}
+                <IoIosArrowBack  color='white' onClick={handleMessagesShowSection} className='cursor-pointer mt-[3px] md:hidden block ' size={30}/>
+                {<img src={theTwoMessageUsers[3]} className="rounded-full md:ml-7 w-[35px] h-[35px]" alt=""/>}
                 {<p className='ml-1 mt-[6px] text-sm'>{theTwoMessageUsers[2]}</p>}
             </div>
             <div className='flex'>

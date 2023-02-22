@@ -31,16 +31,16 @@ export default function Home() {
     <div className='flex'>
       <messagesContext.Provider value={[theTwoMessageUsers,setTheTwoMessageUsers]}>
         <showMessageSectionContext.Provider value={[showMessageSection,setShowMessageSection]}>
-      <div className='sm:w-1/3'>
+      <div className={`sm:w-1/3 ${showMessageSection ? "md:block hidden": "md:block"}`}>
         <ContactsSection user={users} />
       </div>
       {showMessageSection?
-      <div className=''>
+      <div className={`${showMessageSection ? "md:block block ": "hidden"}`}>
       <MessagesSection/>
     </div> 
       : 
       <div className='flex justify-center items-center'>
-        <img src={messangerLogo} alt="" className='w-[200px] absolute left-[60%] top-[40%] h-[200px]'/>
+        <img src={messangerLogo} alt="" className='w-[200px] md:block hidden absolute left-[60%] top-[40%] h-[200px]'/>
       </div>
       }
       </showMessageSectionContext.Provider>

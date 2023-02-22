@@ -14,7 +14,7 @@ export default function MessagesSection(props) {
         window.location.reload()
       }
   return (
-    <div className='w-full overflow-y-scroll sm:w-1/3 border border-transparent absolute top-0 bottom-0 border-r-gray-800  '>
+    <div className='w-full overflow-y-scroll scrollbar-hide md:scrollbar-default sm:w-1/3 border border-transparent absolute top-0 bottom-0 border-r-gray-800  '>
         <div className='flex border border-transparent border-b-gray-800 pb-3 justify-between '>
             <div className='flex mt-3'>
                 <img src={value[0].photoURL} alt={value[0].displayName} className="w-[40px] rounded-full h-[40px]"/>
@@ -46,13 +46,16 @@ export default function MessagesSection(props) {
             props.user.map(use=>{
                 return(
                     <>
-                    <img src={use.pfp} alt="" className="rounded-full my-3 w-[50px] mr-5 h-[50px]"/>
+                    {use.name!==value[0].displayName&&
+
+                    <img src={use.pfp} key={use._id} alt="" className="rounded-full my-3 w-[50px] mr-5 h-[50px]"/>
+                    }
                     </>
                 )
             })
            }
         </div>
-        <div >
+        <div className='mt-6'>
             {props.user.map(use=>{
                 return(
                     <div key={use._id}>
