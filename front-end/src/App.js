@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
-import Login from './components/login'
-import { createContext } from 'react'
-import Home from './components/Home';
-export const messangerContext=createContext();
+import React, { createContext, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Collection from "./Components/Collection";
+import Home from "./Components/Home";
+import Navbar from "./Components/Navbar";
+export const PostingLoadingContext=createContext()
 export default function App() {
-  const [value,setValue]=useState([])
-  
+  const [PostingLoading,setPostingLoading]=useState(false)
   return (
-    <div>
-      <messangerContext.Provider value={[value,setValue]}>
-        {value.length!==0?
-        <Home />
-        :<Login/>}
-      </messangerContext.Provider>
-      
-    </div>
-  )
-}
+    <div className="w-full">
+        <PostingLoadingContext.Provider value={[PostingLoading,setPostingLoading]}>
+      <BrowserRouter>
+      <Navbar/>
+      <Routes>
+        <Route path="/" index element={<Home/>}/>
+        <Route path="/collection"  element={<Collection/>}/>
+      </Routes>
+      </BrowserRouter>
+        </PostingLoadingContext.Provider>
+    </div>    
+    )}
